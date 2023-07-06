@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Client</th>
+          <th scope="col">Contrat</th>
+          <th scope="col">Nom de l'événement</th>
+          <th scope="col">Date de début</th>
+          <th scope="col">Date de fin</th>
+          <th scope="col">Contact de support</th>
+          <th scope="col">Emplacement</th>
+          <th scope="col">Nombre de participants</th>
+          <th scope="col">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for event in events %}
+          <tr>
+            <td>{{ event.client.complete_name }}</td>
+            <td>{{ event.contract }}</td>
+            <td>{{ event.event_name }}</td>
+            <td>{{ event.date_start }}</td>
+            <td>{{ event.date_end }}</td>
+            <td>{{ event.support_contact }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.attentees }}</td>
+            <td>{{ event.notes }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

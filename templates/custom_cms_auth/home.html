@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-lg-6 col-xxl-4 my-5 mx-auto">
+    <div class="d-grid gap-2">
+      <a href="{% url 'customers' %}" class="btn btn-primary" role="button">Clients</a>
+      <a href="{% url 'contracts' %}" class="btn btn-primary" role="button">Contrats</a>
+      <a href="{% url 'events' %}" class="btn btn-primary" role="button">Evenements</a>
+      <a href="{% url 'staff' %}" class="btn btn-primary" role="button">Staff</a>
+    </div>
+</div>
+{% endblock %}

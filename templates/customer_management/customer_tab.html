@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nom complet</th>
+          <th scope="col">Email</th>
+          <th scope="col">Téléphone</th>
+          <th scope="col">Nom de l'entreprise</th>
+          <th scope="col">Date de création</th>
+          <th scope="col">Date de mise à jour</th>
+          <th scope="col">Contact de vente</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for customer in customers %}
+          <tr>
+            <td>{{ customer.complete_name }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>{{ customer.company_name }}</td>
+            <td>{{ customer.creation_date }}</td>
+            <td>{{ customer.update_date }}</td>
+            <td>{{ customer.sale_contact }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

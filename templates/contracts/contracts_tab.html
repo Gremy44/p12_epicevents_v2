@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Client</th>
+          <th scope="col">Contact de vente</th>
+          <th scope="col">Montant</th>
+          <th scope="col">Reste</th>
+          <th scope="col">Date de création</th>
+          <th scope="col">Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for contract in contracts %}
+          <tr>
+            <td>{{ contract.client.complete_name }}</td>
+            <td>{{ contract.sale_contact }}</td>
+            <td>{{ contract.amount }}</td>
+            <td>{{ contract.rest }}</td>
+            <td>{{ contract.creation_date }}</td>
+            <td>{{ contract.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
