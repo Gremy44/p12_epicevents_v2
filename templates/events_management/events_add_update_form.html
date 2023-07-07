@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    {% if add_or_update %}
+    <h2>Modifier un événement</h2>
+      {% else %}
+    <h2>Ajouter un événement</h2>
+      {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="{{ form.client.id_for_label }}" class="form-label">Client</label>
+        {{ form.client }}
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.contract.id_for_label }}" class="form-label">Contrat</label>
+        {{ form.contract }}
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.event_name.id_for_label }}" class="form-label">Nom de l'événement</label>
+        {{ form.event_name }}
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.date_start.id_for_label }}" class="form-label">Date de début</label>
+        <input type="date" class="form-control datepicker" name="{{ form.date_start.name }}" value="{{ form.date_start.value|date:"Y-m-d" }}">
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.date_end.id_for_label }}" class="form-label">Date de fin</label>
+        <input type="date" class="form-control datepicker" name="{{ form.date_end.name }}" value="{{ form.date_end.value|date:"Y-m-d" }}">
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.support_contact.id_for_label }}" class="form-label">Contact de support</label>
+        {{ form.support_contact }}
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.location.id_for_label }}" class="form-label">Emplacement</label>
+        {{ form.location }}
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.attentees.id_for_label }}" class="form-label">Nombre de participants</label>
+        {{ form.attentees }}
+      </div>
+      <div class="mb-3">
+        <label for="{{ form.notes.id_for_label }}" class="form-label">Notes</label>
+        {{ form.notes }}
+      </div>
+      {% if add_or_update %}
+      <button type="submit" class="btn btn-primary" name="update">Modifier</button>
+        {% else %}
+      <button type="submit" class="btn btn-primary" name="add">Ajouter</button>
+        {% endif %}
+    </form>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true
+      });
+    });
+  </script>
+{% endblock %}

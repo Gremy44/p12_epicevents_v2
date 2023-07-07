@@ -21,13 +21,29 @@ from django.conf.urls.static import static
 from custom_cms_auth.views import (login_page, 
                                    logout_user,
                                    home,
-                                   get_staff,
-                                   update_staff,)
+                                   StaffListView,
+                                   StaffCreateView,
+                                   StaffDeleteView,
+                                   StaffDetailView,
+                                   StaffUpdateView,
+                                   )
 
-from customer_management.views import get_costumer
+from customer_management.views import (ClientListView,
+                                       ClientDetailView,
+                                       ClientCreateView,
+                                       ClientUpdateView,
+                                       ClientDeleteView)
 
-from events_management.views import (get_events,
-                                     get_contracts,)
+from events_management.views import (EventDetailView,
+                                     EventListView,
+                                     EventCreateView,
+                                     EventUpdateView,
+                                     EventDeleteView,
+                                     ContractDetailView,
+                                     ContractListView,
+                                     ContractCreateView,
+                                     ContractUpdateView,
+                                     ContractDeleteView,)
 
 
 urlpatterns = [
@@ -35,10 +51,20 @@ urlpatterns = [
     path('', login_page, name='login'),
     path('logout/', logout_user, name='logout'),
     path('home/', home, name='home'),
-    path('customers/', get_costumer, name='customers'),
-    path('events/', get_events, name='events' ),
-    path('contracts/', get_contracts, name='contracts' ),
-    path('staff/', get_staff, name='staff'),
-    path('staff/update/<int:user_id>/', update_staff, name='update_staff'),
-
+    path('customers/', ClientListView.as_view(), name='customers'),
+    path('customers/add/', ClientCreateView.as_view(), name='add_customers'),
+    path('customers/update/<int:pk>/', ClientUpdateView.as_view(), name='update_customers'),
+    path('customers/delete/<int:pk>/', ClientDeleteView.as_view(), name='delete_customers'),
+    path('events/', EventListView.as_view(), name='events' ),
+    path('events/add/', EventCreateView.as_view(), name='add_events' ),
+    path('events/update/<int:pk>', EventUpdateView.as_view(), name='update_events' ),
+    path('events/delete/<int:pk>', EventDeleteView.as_view(), name='delete_events' ),
+    path('contracts/', ContractListView.as_view(), name='contracts' ),
+    path('contracts/add/', ContractCreateView.as_view(), name='add_contracts' ),
+    path('contracts/update/<int:pk>', ContractUpdateView.as_view(), name='update_contracts' ),
+    path('contracts/delete/<int:pk>', ContractDeleteView.as_view(), name='delete_contracts' ),
+    path('staff/', StaffListView.as_view() , name='staff'),
+    path('staff/add/', StaffCreateView.as_view(), name='add_staff'),
+    path('staff/update/<int:pk>/', StaffUpdateView.as_view(), name='update_staff'),
+    path('staff/delete/<int:pk>/', StaffDeleteView.as_view(), name='delete_staff'),
 ]

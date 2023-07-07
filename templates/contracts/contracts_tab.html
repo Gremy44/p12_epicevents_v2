@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <div class="container">
+    <a href="{% url 'add_contracts' %}" class="btn btn-primary mb-3">Add</a>
     <table class="table">
       <thead>
         <tr>
@@ -10,6 +11,7 @@
           <th scope="col">Reste</th>
           <th scope="col">Date de création</th>
           <th scope="col">Statut</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +23,13 @@
             <td>{{ contract.rest }}</td>
             <td>{{ contract.creation_date }}</td>
             <td>{{ contract.status }}</td>
+            <td>
+              <a href="{% url 'update_contracts' contract.id %}" class="btn btn-primary">Modifier</a>
+              <form action="{% url 'delete_contracts' contract.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">X</button>
+              </form>
+            </td>
           </tr>
         {% endfor %}
       </tbody>

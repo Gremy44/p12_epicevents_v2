@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <div class="container">
+    <a href="{% url 'add_events' %}" class="btn btn-primary mb-3">Ajouter</a>
     <table class="table">
       <thead>
         <tr>
@@ -13,6 +14,7 @@
           <th scope="col">Emplacement</th>
           <th scope="col">Nombre de participants</th>
           <th scope="col">Notes</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +29,13 @@
             <td>{{ event.location }}</td>
             <td>{{ event.attentees }}</td>
             <td>{{ event.notes }}</td>
+            <td>
+              <a href="{% url 'update_events' event.id %}" class="btn btn-primary">Modifier</a>
+              <form action="{% url 'delete_events' event.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">X</button>
+              </form>
+            </td>
           </tr>
         {% endfor %}
       </tbody>

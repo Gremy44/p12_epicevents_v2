@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <div class="container">
+    <a href="{% url 'add_staff' %}" class="btn btn-primary mb-3">Add</a>
     <table class="table">
       <thead>
         <tr>
@@ -9,7 +10,7 @@
           <th scope="col">Nom de famille</th>
           <th scope="col">Email</th>
           <th scope="col">Rôle</th>
-          <th scope="col">Actions</th> <!-- Nouvelle colonne pour les actions -->
+          <th scope="col">Actions</th> <!-- colonne pour les actions -->
         </tr>
       </thead>
       <tbody>
@@ -22,6 +23,10 @@
             <td>{{ staff.role }}</td>
             <td>
               <a href="{% url 'update_staff' staff.id %}" class="btn btn-primary">Modifier</a> <!-- Lien de modification -->
+              <form action="{% url 'delete_staff' staff.id %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">X</button>
+              </form>
             </td>
           </tr>
         {% endfor %}
