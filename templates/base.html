@@ -14,7 +14,7 @@
     {% include 'components/navbar.html' %}
     
     <div class="main-container">
-        <p class="user-id">User : <strong>{{ user.username}}</strong> - role: {{ user.role }}</p>
+        <h5 class="user-id mt-4" >User : <strong>{{ user.username}}</strong> - role: {{ user.role }}</h5>
 
         {% block content %}
         {% endblock content %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <div class="container">
-    <a href="{% url 'add_events' %}" class="btn btn-primary mb-3">Ajouter</a>
+    <a href="{% url 'add_events' %}" class="btn btn-primary mb-3">Add</a>
     <table class="table">
       <thead>
         <tr>
@@ -21,7 +21,7 @@
         {% for event in events %}
           <tr>
             <td>{{ event.client.complete_name }}</td>
-            <td>{{ event.contract }}</td>
+            <td>ID: {{ event.contract.id }}</td>
             <td>{{ event.event_name }}</td>
             <td>{{ event.date_start }}</td>
             <td>{{ event.date_end }}</td>
