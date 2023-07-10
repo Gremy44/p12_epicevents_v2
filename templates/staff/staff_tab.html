@@ -2,7 +2,7 @@
 {% block content %}
   <div class="container">
     <a href="{% url 'add_staff' %}" class="btn btn-primary mb-3">Add</a>
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Nom d'utilisateur</th>
@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         {% for staff in staff %}
-          <tr>
+        <tr class="table-row" data-href="{% url 'detail_staff' staff.id %}">
             <td>{{ staff.username }}</td>
             <td>{{ staff.first_name }}</td>
             <td>{{ staff.last_name }}</td>
@@ -32,5 +32,18 @@
         {% endfor %}
       </tbody>
     </table>
+    <a href="{% url 'home' %}" class="btn btn-primary mb-3">Retour</a>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const tableRows = document.querySelectorAll(".table-row");
+      tableRows.forEach(function(row) {
+        row.addEventListener("click", function() {
+          const url = this.dataset.href;
+          window.location.href = url;
+        });
+      });
+    });
+  </script>
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <ul class="list-group col-lg-6 col-xxl-4 my-5 mx-auto">
+    <li class="list-group-item list-group-item-action"><strong>Client :</strong> {{ events.client.complete_name }}</li>
+    <li class="list-group-item list-group-item-action"><strong>ID contrat N° :</strong> {{ events.contract.id }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Nom de l'évènement :</strong> {{ events.event_name }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Date de début :</strong> {{ events.date_start }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Date de fin :</strong> {{ events.date_end }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Contacte support :</strong> {{ events.support_contact }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Adresse :</strong> {{ events.location }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Attendu :</strong> {{ events.attentees }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Notes :</strong> {{ events.notes }}</li>
+  </ul>
+  <a href="{% url 'events' %}" class="btn btn-primary mb-3">Retour</a>
+{% endblock %}

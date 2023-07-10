@@ -2,7 +2,7 @@
 {% block content %}
   <div class="container">
     <a href="{% url 'add_events' %}" class="btn btn-primary mb-3">Add</a>
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Client</th>
@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         {% for event in events %}
-          <tr>
+          <tr class="table-row" data-href="{% url 'detail_events' event.id %}">
             <td>{{ event.client.complete_name }}</td>
             <td>ID: {{ event.contract.id }}</td>
             <td>{{ event.event_name }}</td>
@@ -40,5 +40,18 @@
         {% endfor %}
       </tbody>
     </table>
+    <a href="{% url 'home' %}" class="btn btn-primary mb-3">Retour</a>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const tableRows = document.querySelectorAll(".table-row");
+      tableRows.forEach(function(row) {
+        row.addEventListener("click", function() {
+          const url = this.dataset.href;
+          window.location.href = url;
+        });
+      });
+    });
+  </script>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <ul class="list-group col-lg-6 col-xxl-4 my-5 mx-auto">
+    <li class="list-group-item list-group-item-action"><strong>Client :</strong> {{ contract.client.complete_name }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Contact de vente :</strong> {{ contract.sale_contact }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Montant :</strong> {{ contract.amount }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Reste à payer :</strong> {{ contract.rest }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Date de création :</strong> {{ contract.creation_date }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Status :</strong> {{ contract.status }}</li>
+  </ul>
+  <a href="{% url 'contracts' %}" class="btn btn-primary mb-3">Retour</a>
+{% endblock %}

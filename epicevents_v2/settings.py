@@ -33,6 +33,11 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'custom_cms_auth.User'
 
+# a tester si soucis de connexion
+'''AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]'''
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -75,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'epicevents_v2.context_processors.user_role'
             ],
         },
     },

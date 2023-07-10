@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <ul class="list-group col-lg-6 col-xxl-4 my-5 mx-auto">
+    <li class="list-group-item list-group-item-action"><strong>Nom complet :</strong> {{ customer.complete_name }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Email :</strong> {{ customer.email }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Télépchone :</strong> {{ customer.phone }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Nom de la compagnie :</strong> {{ customer.company_name }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Date de création :</strong> {{ customer.creation_date }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Dernière modification :</strong> {{ customer.update_date }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Contacte vendeur :</strong> {{ customer.sale_contact }}</li>
+  </ul>
+  <a href="{% url 'customers' %}" class="btn btn-primary mb-3">Retour</a>
+{% endblock %}

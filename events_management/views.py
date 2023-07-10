@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import Event, Contract
@@ -11,20 +12,26 @@ def get_contracts(request):
                   context={'contracts': contracts},)
     
 
-class ContractDetailView(DetailView):
+class ContractDetailView(LoginRequiredMixin, DetailView):
     model = Contract
-    template_name = 'contracts/contracts_details.html'
+    template_name = 'contracts/contracts_detail.html'
     context_object_name = 'contracts'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        contract = self.get_object()  # Récupère l'objet Contract pour accéder à ses attributs
+        context['contract'] = contract
+        return context
+    
 
-class ContractListView(ListView):
+class ContractListView(LoginRequiredMixin, ListView):
     model = Contract
     template_name = 'contracts/contracts_tab.html'
     context_object_name = 'contracts'
     paginate_by = 10
     
 
-class ContractCreateView(CreateView):
+class ContractCreateView(LoginRequiredMixin, CreateView):
     model = Contract
     template_name = 'contracts/contracts_add_update_form.html'
     fields = ['amount', 'rest', 'status', 'client', 'sale_contact']
@@ -38,7 +45,7 @@ class ContractCreateView(CreateView):
         return context
 
 
-class ContractUpdateView(UpdateView):
+class ContractUpdateView(LoginRequiredMixin, UpdateView):
     model = Contract
     template_name = 'contracts/contracts_add_update_form.html'
     fields = ['amount', 'rest', 'status', 'client', 'sale_contact']
@@ -52,25 +59,31 @@ class ContractUpdateView(UpdateView):
         return context
 
 
-class ContractDeleteView(DeleteView):
+class ContractDeleteView(LoginRequiredMixin, DeleteView):
     model = Contract
     template_name = 'contracts/contracts_delete.html'
     success_url = '/contracts'
     
     
-class EventDetailView(DetailView):
+class EventDetailView(LoginRequiredMixin, DetailView):
     model = Event
-    template_name = 'events_management/events_details.html'
+    template_name = 'events_management/events_detail.html'
     context_object_name = 'events'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        events = self.get_object()  # Récupère l'objet Contract pour accéder à ses attributs
+        context['events'] = events
+        return context
+    
 
-class EventListView(ListView):
+class EventListView(LoginRequiredMixin, ListView):
     model = Event
     template_name = 'events_management/events_tab.html'
     context_object_name = 'events'
     paginate_by = 10
     
-class EventCreateView(CreateView):
+class EventCreateView(LoginRequiredMixin, CreateView):
     model = Event
     template_name = 'events_management/events_add_update_form.html'  # Spécifiez le modèle pour le rendu du formulaire
     fields = ['event_name', 'date_start', 'date_end', 'location', 'attentees', 'notes', 'client', 'contract', 'support_contact']
@@ -84,7 +97,7 @@ class EventCreateView(CreateView):
         return context
     
 
-class EventUpdateView(UpdateView):
+class EventUpdateView(LoginRequiredMixin, UpdateView):
     model = Event
     template_name = 'events_management/events_add_update_form.html'  # Spécifiez le modèle pour le rendu du formulaire
     fields = ['event_name', 'date_start', 'date_end', 'location', 'attentees', 'notes', 'client', 'contract', 'support_contact']
@@ -98,7 +111,7 @@ class EventUpdateView(UpdateView):
         return context
     
     
-class EventDeleteView(DeleteView):
+class EventDeleteView(LoginRequiredMixin, DeleteView):
     model = Event
     template_name = 'events_management/events_delete.html'
     success_url = '/events'
