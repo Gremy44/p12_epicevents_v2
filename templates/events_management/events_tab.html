@@ -30,11 +30,21 @@
             <td>{{ event.attentees }}</td>
             <td>{{ event.notes }}</td>
             <td>
-              <a href="{% url 'update_events' event.id %}" class="btn btn-primary">Modifier</a>
-              <form action="{% url 'delete_events' event.id %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">X</button>
-              </form>
+              <!-- Condition modifier-->
+              {% if perms.events_management.change_event %}
+                <a href="{% url 'update_events' event.id %}" class="btn btn-primary">Modifier</a>
+              {% else %}
+                <p> - </p>
+              {% endif %}
+              <!-- Condition supprimer -->
+              {% if perms.events_management.delete_event %}
+                <form action="{% url 'delete_events' event.id %}" method="post" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">X</button>
+                </form>
+              {% else %}
+                <p></p>
+              {% endif %}
             </td>
           </tr>
         {% endfor %}

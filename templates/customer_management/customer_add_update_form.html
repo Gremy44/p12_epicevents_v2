@@ -2,14 +2,14 @@
 {% block content %}
   <div class="container">
     {% if add_or_update %}
-    <h2>Modifier un membre du staff</h2>
+    <h2>Modifier le client</h2>
       {% else %}
-    <h2>Ajouter un membre du staff</h2>
+    <h2>Ajouter un nouveau client</h2>
       {% endif %}
     <form method="post">
       {% csrf_token %}
       <div class="mb-3">
-        <label for="{{ form.complete_name.id_for_label }}" class="form-label">Nom complet</label>
+        <label for="{{ form.complete_name.id_for_label }}" class="form-label">Nom complet du client</label>
         {{ form.complete_name }}
       </div>
       <div class="mb-3">

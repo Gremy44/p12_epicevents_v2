@@ -6,7 +6,7 @@
     <li class="list-group-item list-group-item-action"><strong>Montant :</strong> {{ contract.amount }}</li>
     <li class="list-group-item list-group-item-action"><strong>Reste à payer :</strong> {{ contract.rest }}</li>
     <li class="list-group-item list-group-item-action"><strong>Date de création :</strong> {{ contract.creation_date }}</li>
-    <li class="list-group-item list-group-item-action"><strong>Status :</strong> {{ contract.status }}</li>
+    <li class="list-group-item list-group-item-action"><strong>Contrat signé :</strong> {{ contract.status }}</li>
   </ul>
   <a href="{% url 'contracts' %}" class="btn btn-primary mb-3">Retour</a>
 {% endblock %}

@@ -26,11 +26,19 @@
             <td>{{ customer.update_date }}</td>
             <td>{{ customer.sale_contact }}</td>
             <td>
-              <a href="{% url 'update_customers' customer.id %}" class="btn btn-primary">Modifier</a>
+              {% if perms.customer_management.change_client %}
+                <a href="{% url 'update_customers' customer.id %}" class="btn btn-primary">Modifier</a>
+              {% else %}
+                <p> - </p>
+              {% endif %}
+              {% if perms.customer_management.delete_client %}
               <form action="{% url 'delete_customers' customer.id %}" method="post" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">X</button>
               </form>
+              {% else %}
+                <p></p>
+              {% endif %}
             </td>
           </tr>
         {% endfor %}

@@ -9,3 +9,6 @@ class Client(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     sale_contact = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.complete_name

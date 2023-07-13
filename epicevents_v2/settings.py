@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'custom_cms_auth',
     'widget_tweaks',
     'bootstrap5',
+    'admin_cli',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'epicevents_v2.context_processors.user_role'
+                'epicevents_v2.context_processors.user_role',
             ],
         },
     },

@@ -22,11 +22,22 @@
             <td>{{ staff.email }}</td>
             <td>{{ staff.role }}</td>
             <td>
-              <a href="{% url 'update_staff' staff.id %}" class="btn btn-primary">Modifier</a> <!-- Lien de modification -->
-              <form action="{% url 'delete_staff' staff.id %}" method="post" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">X</button>
-              </form>
+              <!-- Condition de modification -->
+              {% if perms.custom_cms_auth.change_user %}
+                <a href="{% url 'update_staff' staff.id %}" class="btn btn-primary">Modifier</a>
+              {% else %}
+                <a href="#" class="btn btn-primary" disabled >Modifier</a>
+              {% endif %}
+              <!-- Condition de suppression -->
+              {% if perms.custom_cms_auth.delete_user %}
+                <form action="{% url 'delete_staff' staff.id %}" method="post" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">X</button>
+                </form>
+              {% else %}
+                <p></p>
+              {% endif %}
+
             </td>
           </tr>
         {% endfor %}
